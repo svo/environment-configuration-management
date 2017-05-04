@@ -5,6 +5,7 @@
       - build-essential
       - libssl-dev
       - libffi-dev
+      - python
       - python-dev
       - python-pip
       - python-software-properties
@@ -29,6 +30,16 @@
 
     - name: Install Terraform
       copy: src=/tmp/terraform dest=/usr/local/bin remote_src=yes mode=0755
+      become: yes
+
+    - name: Get Packer installer
+      get_url: url=https://releases.hashicorp.com/packer/1.0.0/packer_1.0.0_linux_amd64.zip dest=~/Installs/packer_1.0.0_linux_amd64.zip
+
+    - name: Unarchive Packer
+      unarchive: src=~/Installs/packer_1.0.0_linux_amd64.zip remote_src=yes dest=/tmp
+
+    - name: Install packer
+      copy: src=/tmp/packer dest=/usr/local/bin remote_src=yes mode=0755
       become: yes
 
     - name: Install awscli
