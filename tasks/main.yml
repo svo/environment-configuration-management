@@ -1,3 +1,17 @@
+
+    - name: Install dependencies
+      apt: pkg={{ item }} update_cache=yes
+      with_items:
+      - build-essential
+      - libssl-dev
+      - libffi-dev
+      - python-dev
+      - python-pip
+      - python-software-properties
+      - python-gpgme
+      - unzip
+      become: yes
+
     - name: Create home directories
       file: path=~/{{ item }} state=directory
       with_items:
