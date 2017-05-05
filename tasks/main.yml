@@ -19,7 +19,7 @@
       - Installs
 
     - name: Install ansible configuration management
-      pip: name=ansible version=2.1.1.0
+      pip: name=ansible version=2.2.2.0
       become: yes
 
     - name: Download Terraform installation resource
