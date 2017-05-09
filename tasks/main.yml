@@ -18,12 +18,16 @@
       with_items:
       - Installs
 
-    - name: Install ansible configuration management
+    - name: Install Ansible configuration management
       pip: name=ansible version=2.2.2.0
       become: yes
 
     - name: Download Terraform installation resource
       get_url: url=https://releases.hashicorp.com/terraform/0.9.1/terraform_0.9.1_linux_amd64.zip dest=~/Installs/terraform_0.9.1_linux_amd64.zip
+      register: terraform_get_url_result
+      until: terraform_get_url_result | succeeded
+      retries: 3
+      delay: 1
 
     - name: Unarchive Terraform
       unarchive: src=~/Installs/terraform_0.9.1_linux_amd64.zip remote_src=yes dest=/tmp
@@ -34,6 +38,10 @@
 
     - name: Get Packer installer
       get_url: url=https://releases.hashicorp.com/packer/1.0.0/packer_1.0.0_linux_amd64.zip dest=~/Installs/packer_1.0.0_linux_amd64.zip
+      register: packer_get_url_result
+      until: packer_get_url_result | succeeded
+      retries: 3
+      delay: 1
 
     - name: Unarchive Packer
       unarchive: src=~/Installs/packer_1.0.0_linux_amd64.zip remote_src=yes dest=/tmp
