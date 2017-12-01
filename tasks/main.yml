@@ -66,3 +66,4 @@
       with_items:
       - {repo: "https://github.com/pearofducks/ansible-vim.git", dest: ansible-vim}
       - {repo: "https://github.com/hashivim/vim-terraform.git", dest: vim-terraform}
+      - {repo: "https://github.com/rodjek/vim-puppet.git", dest: vim-puppet}
