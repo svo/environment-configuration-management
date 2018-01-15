@@ -54,13 +54,6 @@
       pip: name=awscli
       become: yes
 
-    - name: Install AWS IDP requirements
-      apt: pkg={{ item }}
-      with_items:
-      - libxml2-utils
-      - jq
-      become: yes
-
     - name: Install vim plugins
       git: repo={{ item.repo }} dest=~/.vim/bundle/{{ item.dest }}
       with_items:
